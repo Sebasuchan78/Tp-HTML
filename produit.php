@@ -8,5 +8,13 @@
 </head>
 <body>
   <a class="nav-link" href="formulaire.php">Formulaire</a>
+
+
+
 </body>
 </html>
+
+
+<?php
+$requete="SELECT `nom`, `taille`, `prix` FROM `produit`";
+$result=$connexion->query($requete);
