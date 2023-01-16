@@ -93,18 +93,18 @@
             
 <div class="tab-content">
   <div class="tab-pane fade show active" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-  <form action="formTraitement.php?traitement=login" method="POST">
-      
+  
+    <form action="formTraitement.php?traitement=login" method="POST">    
 
       <!-- Email input -->
       <div class="form-outline mb-4">
-        <input type="email" id="loginName" class="form-control" />
+        <input type="email" name="email" id="loginName" class="form-control" />
         <label class="form-label" for="loginName">Email</label>
       </div>
 
       <!-- Password input -->
       <div class="form-outline mb-4">
-        <input type="password" id="loginPassword" class="form-control" />
+        <input type="password" name="mdp" id="loginPassword" class="form-control" />
         <label class="form-label" for="loginPassword">password</label>
       </div>
 
@@ -114,6 +114,7 @@
     </form>
   </div>
   <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
+    
     <form action="formTraitement.php?traitement=inscription" method="POST">
 
       <!-- Name input -->

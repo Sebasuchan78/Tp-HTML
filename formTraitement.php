@@ -10,6 +10,9 @@ switch($_GET['traitement']){
         include('./utilisateur.php');
         break;
     case 'login':
+        $nom = $_POST['nom'];
+        $mail = $_POST['email'];
+        $connexion=new mysqli("localhost","root","","sitetp");
         break;
     case 'insertProd':
         $nom = $_POST["nom"];
