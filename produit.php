@@ -47,7 +47,7 @@ $result=$connexion->query($requete);
 
   <?php
       
-      $id = 0;
+      $id = 1;
       foreach($result as $UnResult){
         echo "<tr>";
         echo "<th>".$id++."</th>";
