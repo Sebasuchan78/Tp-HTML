@@ -45,7 +45,7 @@
 </nav>
 </header>
 
-  <form action="formTraitement.php" method="get">
+  <form action="formTraitement.php?traitement=insertProd" method="POST">
   <div class="form-outline mb-4">
     <input type="text" name="nom" id="form1Example1" class="form-control" />
     <label class="form-label" for="form1Example1">Nom</label>
