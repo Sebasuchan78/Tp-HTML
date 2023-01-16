@@ -39,7 +39,7 @@ if (isset($_SESSION['user'])) {
     include("navbar.php");
 ?>
 
-  <form action="formTraitement.php?traitement=insertProd" method="POST">
+  <form action="formulaire.php" method="post" enctype="multipart/form-data">
   <div class="form-outline mb-4">
     <input type="text" name="nom" id="form1Example1" class="form-control" />
     <label class="form-label" for="form1Example1">Nom</label>
@@ -51,6 +51,9 @@ if (isset($_SESSION['user'])) {
   <div class="form-outline mb-4">
     <input type="number" name="prix" id="form1Example2" class="form-control" />
     <label class="form-label" for="form1Example2">prix</label>
+  </div>
+  <div class="form-outline mb-4">
+    <input type="file" name="fileToUpload" id="fileToUpload" class="form-control" />
   </div>
   <button type="submit" class="btn btn-primary btn-block">envoyer</button>
   </form>
@@ -65,4 +68,43 @@ if (isset($_SESSION['user'])) {
 else{
   echo "va te faire enculer t'es pas co";
 }
+
+
+      $servername = "localhost";
+      $root = "root";
+      $mdp = "";
+      $db = "sitetp";
+
+
+
+ 
+      $conn = new mysqli($servername, $root, $mdp, $db);
+
+      // Vérifiez la connexion
+      if ($conn->connect_error) {
+          die("La connexion a échoué: " . $conn->connect_error);
+      } 
+
+      if(!empty($_FILES["fileToUpload"]["name"])) {
+            $nom = $_POST['nom'];
+            $taille = $_POST['taille'];
+            $prix = $_POST['prix'];
+      $target_dir = "image/";
+      $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+      move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
+
+
+      // Enregistrer l'emplacement de l'image dans la base de données
+      $image_url = $target_file;
+      $sql="INSERT into produit(nom_produit, taille_produit, prix_produit, img) VALUES('$nom',$taille,$prix,'$image_url')";
+
+      if ($conn->query($sql) === TRUE) {
+          echo "L'image a été enregistrée avec succès dans la base de données.";
+      } else {
+          echo "Error: " . $sql . "<br>" . $conn->error;
+      }
+
+      $conn->close();
+}
+
 ?>

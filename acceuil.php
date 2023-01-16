@@ -12,6 +12,6 @@
       SLT BEAUTE
     </div>
 
-    <a href="utilisateur.php" target="_blank">Connexion</a>
+    <a class="nav-link active" href="utilisateur.php">Connexion</a>
 </body>
 </html>
