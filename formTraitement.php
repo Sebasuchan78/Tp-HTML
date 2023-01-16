@@ -42,6 +42,11 @@ switch($_GET['traitement']){
         session_start();
         session_destroy();
         header('Location: utilisateur.php');
+    case 'supp':
+        $connexion=new mysqli("localhost","root","","sitetp");
+        $requete = "DELETE FROM produit WHERE id > 0";
+        $connexion->query($requete);
+        include('./formulaire.php');
 }
 
 

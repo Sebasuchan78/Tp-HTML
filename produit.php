@@ -70,8 +70,11 @@ foreach($result as $UnResult){
 </body>
 </html>
 
+<form action="formTraitement.php?traitement=supp" method="post">
+  <button type="submit">suppression</button>
+</form>
+
 <?php
-  
 }
 else{
   echo "va te faire enculer t'es pas co";
