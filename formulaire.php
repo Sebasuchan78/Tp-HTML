@@ -35,17 +35,9 @@ if (isset($_SESSION['user'])) {
 </head>
 <body>
 
-<header>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="produit.php">produit</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <form action="formTraitement.php?traitement=deco" method="post" class="form-inline my-2 my-lg-0">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">deconnexion</button>
-    </form>
-</nav>
-</header>
+<?php
+    include("navbar.php");
+?>
 
   <form action="formTraitement.php?traitement=insertProd" method="POST">
   <div class="form-outline mb-4">

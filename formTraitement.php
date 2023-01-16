@@ -22,10 +22,9 @@ switch($_GET['traitement']){
             header('Location: produit.php');
         }
         else{
-            echo "erreur va te faire enculer";
+            echo "<h1 style='font-size: 72px; text-align: center;'>va te faire enculer</h1>";
             include("utilisateur.php");
         }
-        die();
         break;
     case 'insertProd':
         $nom = $_POST["nom"];
