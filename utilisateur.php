@@ -41,6 +41,11 @@
 
 <body>
 
+<ul class="nav justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link active" href="acceuil.php">Acceuil</a>
+</ul>
+
     <!-- Pills navs -->
 <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
   <li class="nav-item" role="presentation">

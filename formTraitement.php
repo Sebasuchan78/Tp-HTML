@@ -7,6 +7,7 @@ switch($_GET['traitement']){
         $connexion=new mysqli("localhost","root","","sitetp");
         $requete= "INSERT INTO utilisateur(nom, email, mdp) VALUES ('$nom', '$mail', '$mdp')";
         $connexion->query($requete);
+        $connexion->close();
         include('./utilisateur.php');
         break;
     case 'login':
@@ -16,6 +17,7 @@ switch($_GET['traitement']){
         $requete = "SELECT * FROM utilisateur WHERE email = '$mail' AND mdp ='$mdp' ";
         $result = $connexion->query($requete);
         $ligne = mysqli_fetch_assoc($result);
+        $connexion->close();
         if(isset($ligne)){
             session_start();
             $_SESSION['user'] = $ligne;
@@ -33,6 +35,7 @@ switch($_GET['traitement']){
         $connexion=new mysqli("localhost","root","","sitetp");
         $requete= "INSERT INTO produit(nom_produit, taille_produit, prix_produit) VALUES ('$nom', $taille, $prix)";
         $result = $connexion->query($requete);
+        $connexion->close();
         include('./formulaire.php');
         break;
     case 'deco':
