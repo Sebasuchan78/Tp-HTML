@@ -3,6 +3,9 @@ $connexion=new mysqli("localhost","root","","sitetp");
 
 $requete="SELECT * FROM `produit`";
 $result=$connexion->query($requete);
+session_start();
+
+if(isset($_SESSION['user'])){
 
 ?>
 
@@ -45,13 +48,6 @@ $result=$connexion->query($requete);
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="utilisateur.php">connexion <span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-  </div>
 </nav>
 </header>
 
@@ -98,4 +94,10 @@ $result=$connexion->query($requete);
 </body>
 </html>
 
-
+<?php
+  
+}
+else{
+  echo "va te faire enculer t'es pas co";
+}
+?>

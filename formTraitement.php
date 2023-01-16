@@ -6,13 +6,26 @@ switch($_GET['traitement']){
         $mdp = $_POST["mdp"];
         $connexion=new mysqli("localhost","root","","sitetp");
         $requete= "INSERT INTO utilisateur(nom, email, mdp) VALUES ('$nom', '$mail', '$mdp')";
-        $result = $connexion->query($requete);
+        $connexion->query($requete);
         include('./utilisateur.php');
         break;
     case 'login':
-        $nom = $_POST['nom'];
         $mail = $_POST['email'];
+        $mdp = $_POST['mdp'];
         $connexion=new mysqli("localhost","root","","sitetp");
+        $requete = "SELECT * FROM utilisateur WHERE email = '$mail' AND mdp ='$mdp' ";
+        $result = $connexion->query($requete);
+        $ligne = mysqli_fetch_assoc($result);
+        if(isset($ligne)){
+            session_start();
+            $_SESSION['user'] = $ligne;
+            header('Location: produit.php');
+        }
+        else{
+            echo "erreur va te faire enculer";
+            include("utilisateur.php");
+        }
+        die();
         break;
     case 'insertProd':
         $nom = $_POST["nom"];
@@ -23,6 +36,10 @@ switch($_GET['traitement']){
         $result = $connexion->query($requete);
         include('./formulaire.php');
         break;
+    case 'deco':
+        session_start();
+        session_destroy();
+        header('Location: utilisateur.php');
 }
 
 
