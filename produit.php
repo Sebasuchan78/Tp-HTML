@@ -42,11 +42,12 @@ if(isset($_SESSION['user'])){
 <?php
     include("navbar.php");
 ?>
+ <div class="container">
+        <div class="row mt-4">
 <?php
 foreach($result as $UnResult){
  ?>
-    <div class="container">
-        <div class="row mt-4">
+   
             <div class="col-md-3">
                 <div class="card">
                     <img class="card-img-top" src="<?=$UnResult['img']?>" alt="Card image cap">
@@ -59,11 +60,12 @@ foreach($result as $UnResult){
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+     
  <?php
 }
 ?>
+   </div>
+    </div>
 
 </body>
 </html>
