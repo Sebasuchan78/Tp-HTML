@@ -17,23 +17,8 @@ if(isset($_SESSION['user'])){
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pproduit</title>
-<link
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-  rel="stylesheet"
-/>
-<link
-  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-  rel="stylesheet"
-/>
-<link
-  href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.css"
-  rel="stylesheet"
-/>
-<script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.1.0/mdb.min.js"
-></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="produit.css">
+ 
 </head>
 
 
@@ -42,37 +27,85 @@ if(isset($_SESSION['user'])){
 <?php
     include("navbar.php");
 ?>
- <div class="container">
-        <div class="row mt-4">
+    <div class='row'>
 <?php
 foreach($result as $UnResult){
  ?>
    
-            <div class="col-md-3">
-                <div class="card">
-                    <img class="card-img-top" src="<?=$UnResult['img']?>" alt="Card image cap">
-                    <div class="card-body">
-                      <h5 class="card-title"><?= $UnResult['taille_produit']?> taille EU</h5>
-                      <p class="card-text"></p>
-                    </div>
-                    <div class="card-footer">
-                      <small class="text-muted"><?=$UnResult['prix_produit']?> €</small>
-                    </div>
-                </div>
-            </div>
+   <div class='product--blue'>
+    <div class='product_inner'>
+      <img src='<?=$UnResult['img']?>' width='300'>
+      <p><?=$UnResult['nom_produit']?></p>
+      <p>taille <?=$UnResult['taille_produit']?></p>
+      <p>Prix <?=$UnResult['prix_produit']?>€</p>
+      <a href="formTraitement.php?traitement=supp&id=<?=$UnResult['id']?>">suppression de ta race</a>
+    </div>
+  </div>
      
  <?php
 }
 ?>
-   </div>
     </div>
 
 </body>
 </html>
 
-<form action="formTraitement.php?traitement=supp" method="post">
-  <button type="submit">suppression</button>
-</form>
+
+
+<Script>
+  $(function () {
+    "use strict";
+  
+    var init = "No items yet!";
+    var counter = 0;
+  
+    // Initial Cart
+    $(".counter").html(init);
+  
+    // Add Items To Basket
+    function addToBasket() {
+      counter++;
+      $(".counter")
+        .html(counter)
+        .animate(
+          {
+            opacity: "0"
+          },
+          300,
+          function () {
+            $(".counter").delay(300).animate({
+              opacity: "1"
+            });
+          }
+        );
+    }
+  
+    // Add To Basket Animation
+    $("button").on("click", function () {
+      addToBasket();
+      $(this)
+        .parent()
+        .parent()
+        .find(".product_overlay")
+        .css({
+          transform: " translateY(0px)",
+          opacity: "1",
+          transition: "all ease-in-out .45s"
+        })
+        .delay(1500)
+        .queue(function () {
+          $(this)
+            .css({
+              transform: "translateY(-500px)",
+              opacity: "0",
+              transition: "all ease-in-out .45s"
+            })
+            .dequeue();
+        });
+    });
+  });
+
+</Script>
 
 <?php
 }

@@ -52,10 +52,36 @@ switch($_GET['traitement']){
         session_destroy();
         header('Location: utilisateur.php');
     case 'supp':
+        $id = $_GET['id'];
         $connexion=new mysqli("localhost","root","","sitetp");
-        $requete = "DELETE FROM produit WHERE id > 0";
+        $requete = "DELETE FROM produit WHERE id = $id";
         $connexion->query($requete);
         include('./formulaire.php');
+    case 'modif':
+        $id = $_GET['id'];
+        $Nname = $_POST['Nname'];
+        $nmail = $_POST['Nmail'];
+        $Nmdp = $_POST['Nmdp'];
+
+        $connexion=new mysqli("localhost","root","","sitetp");
+        if(empty($Nmdp)){
+            $requete = "UPDATE utilisateur SET email='$nmail', nom='$Nname' WHERE id = '$id'";
+            $connexion->query($requete);
+            var_dump("ca marche sans mdp fdp");
+        }
+        else{
+            $cout = ['cost' => 12];
+            $hash = password_hash($Nmdp, PASSWORD_BCRYPT, $cout);
+            $requete = "UPDATE utilisateur SET mdp = '$hash', email='$nmail', nom='$Nname' WHERE id = '$id'";
+            $connexion->query($requete);
+            var_dump("ca marche avec mdp grosse chienne");
+        }
+        header('Location: produit.php');
+
+       
+       
+        
+
 }
 
 ?>
