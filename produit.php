@@ -36,9 +36,9 @@ foreach($result as $UnResult){
     <div class='product_inner'>
       <img src='<?=$UnResult['img']?>' width='300'>
       <p><?=$UnResult['nom_produit']?></p>
-      <p>taille <?=$UnResult['taille_produit']?></p>
+      <p>taille <?=$UnResult['taille_produit']?> cm</p>
       <p>Prix <?=$UnResult['prix_produit']?>€</p>
-      <a href="formTraitement.php?traitement=supp&id=<?=$UnResult['id']?>">suppression de ta race</a>
+      <a href="formTraitement.php?traitement=supp&id=<?=$UnResult['id']?>">suppression</a>
     </div>
   </div>
      
